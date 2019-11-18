@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ productRow.name }} | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="prod-container prod-one">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>{{ productRow.name|capitalize }}</h1>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <article class="col-12 col-md-6 col-lg-4">
+                    <div class="prod-detail">
+                        <div class="prod-cover">
+                            <div class="prod-picture">
+                                <img src="/upload/product/{{ productRow.id }}/{{ productRow.images[0].file }}" alt="{{ productRow.name }}" title="{{ productRow.name }}" class="img img-fluid"/>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <div class="col-12 col-md-6 col-lg-8">
+                    <p>{{ productRow.description }}</p>
+                    <div class="prod-to-cart">
+                        <div class="prod-chose-qty">
+                            <a href="javascript:void(0);" onclick="deleteQty()" class="btn prod-minus">-</a>
+                            <span class="prod-qty">1</span>
+                            <a href="javascript:void(0);" onclick="addQty()" class="btn prod-plus">+</a>
+                        </div>
+                        <div class="prod-add-to-cart">
+                            <a href="javascript:void(0)" onclick="addToCart({{ productRow.id }})" class="btn btn-sm btn-block">
+                                Ajouter au panier
+                            </a>
+                        </div>
+                        <div class="prod-add-to-cart-message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

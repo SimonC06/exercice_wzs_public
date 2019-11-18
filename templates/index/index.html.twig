@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="prod-container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Notre gamme de produit</h1>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                {% for product in productRows %}
+                    <article class="col-12 col-sm-12 col-md-6 col-lg-4">
+                        <div class="prod-detail">
+                            <div class="prod-cover">
+                                <div class="prod-picture">
+                                    <img src="/upload/product/{{ product.id }}/{{ product.images[0].fileThumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img img-fluid"/>
+                                </div>
+                                <a href="{{ path('product_detail', {'url' : product.url}) }}" class="prod-show-more">
+                                    <span>Voir le détail</span>
+                                </a>
+                            </div>
+                            <div class="prod-information">
+                                <div class="prod-name">{{ product.name }}</div>
+                                <div class="prod-price">{{ product.price|number_format(2,'.',' ') ~ ' €' }}</div>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

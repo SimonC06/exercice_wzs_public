@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}A propos | {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="prod-container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>A propos de ce petit projet...</h1>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <p>Ce projet permet l'ajout au panier d'un ou plusieurs produits en modifiant les quantités souhaités.</p>
+                    <ul>
+                        <li>Framework PHP : Symfony 4.2.12 (PHP v 7.2.10)</li>
+                        <li>Framework CSS : Bootstrap 4</li>
+                        <li>Utilisation de la techonologie Yarn pour la compilation des "assets". </li>
+                        <li>Gestion des données : PHP My Admin v4.8.3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

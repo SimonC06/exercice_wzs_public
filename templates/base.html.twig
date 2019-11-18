@@ -1,0 +1,52 @@
+{% set currentRoute = app.request.attributes.get('_route') %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Salut Wizishop :){% endblock %}</title>
+    <link property="stylesheet" href="{{ asset('build/app.css') }}" rel="stylesheet" type="text/css">
+    {% block css %}{% endblock %}
+</head>
+<body class="body">
+
+<section class="navbar">
+    <div class="navbar-logo">
+        <a href="{{ path('index') }}">
+            <img src="/build/images/logo-wizishop-white.png" alt="Wizishop Test" title="Wizishop Test" class="img img-fluid"/>
+        </a>
+    </div>
+    <div class="navbar-menu">
+        <ul>
+            <li><a href="{{ path('index') }}" {% if currentRoute == 'index' or 'product' in currentRoute %}class="active"{% endif %}>Nos produits</a></li>
+            <li><a href="{{ path('cart_index') }}" {% if 'cart' in currentRoute %}class="active"{% endif %}>Mon panier</a></li>
+            <li><a href="{{ path('about') }}" {% if currentRoute == 'about' %}class="active"{% endif %}>A propos</a></li>
+        </ul>
+    </div>
+    <div class="navbar-footer text-uppercase">
+        2019 - CHETRIT Simon
+    </div>
+</section>
+
+<section class="content">
+    <div class="navbar-cart">
+        <div class="row">
+            <div class="col-12">
+                <ul>
+                    <li>Créer votre compte</li>
+                    <li>Se connecter</li>
+                </ul>
+                <div class="cart-box">
+                    <a href="{{ path('cart_index') }}">
+                        MON PANIER <span class="cart-box-badge">{{ cartProductQty() }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block body %}{% endblock %}
+</section>
+
+{% block javascripts %}{% endblock %}
+<script src="{{ asset('build/app.js') }}"></script>
+</body>
+</html>

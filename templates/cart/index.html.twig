@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier | {{ parent() }}{% endblock %}
+
+{% block body %}
+<div class="cart-summary">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Mon panier</h1>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col">
+                <table class="table cart-table">
+                    <tbody>
+                    {% for cartProduct in cartProductRows %}
+                        <tr class="prod-row-{{ cartProduct.product.id }}">
+                            <td class="cart-prod-name">
+                                {{ cartProduct.product.name }}
+                                <a href="javascript:void(0);" onclick="deleteProductCart({{ cartProduct.product.id }});" class="prod-delete" data-toggle="tooltip" data-placement="top" title="Supprimer le produit">x</a>
+                            </td>
+                            <td class="cart-prod-qty" width="150">
+                                <a href="javascript:void(0);" onclick="deleteQty({{ cartProduct.product.id }})" class="btn prod-minus">-</a>
+                                <span class="prod-qty prod-qty-id-{{ cartProduct.product.id }}">{{ cartProduct.qty }}</span>
+                                <a href="javascript:void(0);" onclick="addQty({{ cartProduct.product.id }})" class="btn prod-plus">+</a>
+                            </td>
+                            <td class="cart-prod-price" width="100">{{ cartProduct.product.price| number_format('2','.',' ')}} €</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Vous n'avez aucun produit dans votre panier :'( .</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="cart-price">
+                    Prix total : <span class="cart-price-total">{{ cartPriceTotal }} €</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
